@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
+  root 'qbwc#qwc'
   get 'qbwc/action' => 'qbwc#_generate_wsdl'
   get 'qbwc/qwc' => 'qbwc#qwc'
   wash_out :qbwc
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  resources :wofficeqb do
+    collection do
+      post :create_client_app
+      post :create_account_app
+
+      get :find_client_app
+      get :find_account_app
+    end
+  end
 end

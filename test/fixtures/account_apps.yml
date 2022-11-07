@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tenant: MyString
+  client_app: one
+  quick_books_data: 
+
+two:
+  name: MyString
+  tenant: MyString
+  client_app: two
+  quick_books_data: 

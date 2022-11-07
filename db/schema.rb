@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_26_223406) do
+ActiveRecord::Schema.define(version: 2022_11_07_215029) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "account_apps", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "tenant"
+    t.uuid "client_app_id", null: false
+    t.json "quick_books_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_app_id"], name: "index_account_apps_on_client_app_id"
+  end
+
+  create_table "client_apps", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "public_key"
+    t.string "secret_key"
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "qbwc_jobs", id: :serial, force: :cascade do |t|
     t.string "name"
@@ -43,4 +64,5 @@ ActiveRecord::Schema.define(version: 2022_10_26_223406) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "account_apps", "client_apps"
 end
