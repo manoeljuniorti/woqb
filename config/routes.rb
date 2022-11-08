@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
       get :find_client_app
       get :find_account_app
+      get :add_customer
     end
   end
 end

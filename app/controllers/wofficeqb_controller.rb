@@ -1,3 +1,4 @@
+require 'qbwc'
 class WofficeqbController < ApplicationController
   def create_client_app
    data = ClientApp.create(client_app_params)
@@ -15,6 +16,18 @@ class WofficeqbController < ApplicationController
 
   def find_account_app
     render json: AccountApp.find_by(id: params[:id])
+  end
+
+  def add_customer
+    data = {
+      customer_add_rq: {
+        customer_add: {
+          name: 'Gabriel'
+        }
+      }
+    }
+
+    QBWC.add_job('Add Gabriel', true, '', CustomerAddWorker, data)
   end
 
   private
