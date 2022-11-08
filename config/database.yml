@@ -75,11 +75,11 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
-  <<: *default
-  database: WOQB_production
-  username: WOQB
-  password: <%= ENV['WOQB_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+#
+#production:
+#  <<: *default
+#  database: WOQB_production
+#  username: WOQB
+#  password: <%= ENV['WOQB_DATABASE_PASSWORD'] %>
