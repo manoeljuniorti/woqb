@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/qbwc/qbwc
+  revision: 2931f54248aa8078cb565040f36f4ac06af8edae
+  specs:
+    qbwc (1.1.0)
+      actionpack (>= 5.0.1)
+      qbxml (>= 0.3.0)
+      wash_out (>= 0.12.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,10 +115,6 @@ GEM
     public_suffix (5.0.0)
     puma (4.3.12)
       nio4r (~> 2.0)
-    qbwc (1.1.0)
-      actionpack (>= 5.0.1)
-      qbxml (>= 0.3.0)
-      wash_out (>= 0.12.0)
     qbxml (0.4.0)
       activesupport (>= 4.1.0)
       builder (~> 3.0)
@@ -221,7 +226,7 @@ DEPENDENCIES
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
-  qbwc
+  qbwc!
   rails (~> 6.0.6)
   sass-rails (>= 6)
   selenium-webdriver
