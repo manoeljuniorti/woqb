@@ -19,15 +19,15 @@ class WofficeqbController < ApplicationController
   end
 
   def add_customer
-    data = {
-      customer_add_rq: {
-        customer_add: {
-          name: 'Gabriel'
-        }
-      }
-    }
+    data = CustomerAddWorker.requests
 
     QBWC.add_job('Add Gabriel', true, '', CustomerAddWorker, data)
+  end
+
+  def add_invoice
+    data = InvoiceAddWorker.requests
+
+    QBWC.add_job('Invoice Gabriel', true, '', InvoiceAddWorker, data)
   end
 
   private
@@ -37,5 +37,9 @@ class WofficeqbController < ApplicationController
 
   def account_app_params
     params.permit(:name, :tenant, :client_app_id, :quickbooks_data)
+  end
+
+  def customer_params
+    params.permit(:name, :active, :company_name, :salutation, :first_name, :last_name, :addr1, :city, :state, :postal_code, :phone, :alt_phone, :email, :full_name, :account_number, :credit_limit)
   end
 end

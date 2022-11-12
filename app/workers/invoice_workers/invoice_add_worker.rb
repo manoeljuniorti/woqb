@@ -1,5 +1,5 @@
 require 'qbwc'
-class CustomerAddWorker < QBWC::Worker
+class InvoiceAddWorker < QBWC::Worker
 
   def self.requests(params)
     {
