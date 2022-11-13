@@ -12,15 +12,15 @@ module InvoiceWorkers
 #            template_ref:{
 #              full_name: params[:template_name]
 #            },
-#            memo: params[:memo],
-#            invoice_line_add: {
-#              item_ref:{
-#                full_name: params[:invoice_line_add][:full_name]
-#              },
-#             quantity: params[:invoice_line_add][:quantity],
-#              desc: params[:invoice_line_add][:desc],
-#              amount: params[:invoice_line_add][:amount],
-#            },
+            memo: params[:memo],
+            invoice_line_add: {
+              item_ref:{
+                full_name: params[:invoice_line_add][:full_name]
+              },
+             quantity: params[:invoice_line_add][:quantity],
+              desc: params[:invoice_line_add][:desc],
+              amount: params[:invoice_line_add][:amount],
+            },
          },
         },
       }
