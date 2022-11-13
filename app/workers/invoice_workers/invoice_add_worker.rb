@@ -1,44 +1,46 @@
 require 'qbwc'
-class InvoiceAddWorker < QBWC::Worker
+module InvoiceWorkers
+  class InvoiceAddWorker < QBWC::Worker
 
-  def self.requests(params)
-    {
-      invoice_add_rq:{
-        invoice_add:{
-          customer_ref:{
-            full_name: params[:customer_name]
-          },
-          template_ref:{
-            full_name: params[:template_name]
-          },
-          memo: params[:memo]
-        }.merge(invoice_line_add(params[:invoice_itens]))
-      },
-    }
-  end
-
-  def invoice_line_add(invoice_itens)
-    itens = []
-    invoice_itens.each do |item|
-      itens << invoice_line_add:{
-        item_ref:{
-          full_name: item[:full_name]
+    def self.requests(params)
+      {
+        invoice_add_rq:{
+          invoice_add:{
+            customer_ref:{
+              full_name: params[:customer_name]
+            },
+            template_ref:{
+              full_name: params[:template_name]
+            },
+            memo: params[:memo]
+          }.merge(invoice_line_add(params[:invoice_itens]))
         },
-        quantity: item[:quantity],
-        desc: item[:desc],
-        amount: item[:amount],
       }
     end
-    itens
-  end
 
-  def handle_response(r, session, job, request, data)
-    {
-      response: r,
-      session: session,
-      job: job,
-      request: request,
-      data: data,
-    }
+    def invoice_line_add(invoice_itens)
+      itens = []
+      invoice_itens.each do |item|
+        itens << invoice_line_add:{
+          item_ref:{
+            full_name: item[:full_name]
+          },
+          quantity: item[:quantity],
+          desc: item[:desc],
+          amount: item[:amount],
+        }
+      end
+      itens
+    end
+
+    def handle_response(r, session, job, request, data)
+      {
+        response: r,
+        session: session,
+        job: job,
+        request: request,
+        data: data,
+      }
+    end
   end
 end

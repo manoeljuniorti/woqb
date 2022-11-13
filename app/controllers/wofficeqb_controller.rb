@@ -19,15 +19,15 @@ class WofficeqbController < ApplicationController
   end
 
   def add_customer
-    data = CustomerAddWorker.requests
+    data = CustomerWorkers::CustomerAddWorker.requests
 
-    QBWC.add_job('Add Gabriel', true, '', CustomerAddWorker, data)
+    QBWC.add_job('Add Gabriel', true, '', CustomerWorkers::CustomerAddWorker, data)
   end
 
   def add_invoice
-    data = InvoiceAddWorker.requests
+    data = InvoiceWorkers::InvoiceAddWorker.requests
 
-    QBWC.add_job('Invoice Gabriel', true, '', InvoiceAddWorker, data)
+    QBWC.add_job('Invoice Gabriel', true, '', InvoiceWorkers::InvoiceAddWorker, data)
   end
 
   def find_invoice
