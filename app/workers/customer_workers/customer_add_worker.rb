@@ -1,5 +1,5 @@
 require 'qbwc'
-module CostumerWorkers
+module CustomerWorkers
   class CustomerAddWorker < QBWC::Worker
 
     def self.requests(params)
