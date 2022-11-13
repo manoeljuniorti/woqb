@@ -21,7 +21,8 @@ module InvoiceWorkers
     def invoice_line_add(invoice_itens)
       itens = []
       invoice_itens.each do |item|
-        itens << invoice_line_add:{
+        itens << {
+          invoice_line_add:{
           item_ref:{
             full_name: item[:full_name]
           },
@@ -29,6 +30,7 @@ module InvoiceWorkers
           desc: item[:desc],
           amount: item[:amount],
         }
+      }
       end
       itens
     end
