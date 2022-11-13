@@ -13,7 +13,14 @@ module InvoiceWorkers
               full_name: params[:template_name]
             },
             memo: params[:memo],
-            invoice_line_add: invoice_line_add(params[:invoice_itens])
+            invoice_line_add: {
+              item_ref:{
+                full_name: item[:invoice_line_add][:full_name]
+              },
+              quantity: item[:invoice_line_add][:quantity],
+              desc: item[:invoice_line_add][:desc],
+              amount: item[:invoice_line_add][:amount],
+            },
           },
         },
       }
