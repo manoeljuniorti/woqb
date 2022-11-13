@@ -31,7 +31,7 @@ class WofficeqbController < ApplicationController
   end
 
   def find_invoice
-    render json: 
+    #render json: 
   end
 
   private
