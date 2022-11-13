@@ -11,9 +11,7 @@ class InvoiceAddWorker < QBWC::Worker
           template_ref:{
             full_name: params[:template_name]
           },
-          customer_memo:{
-            value: params[:customer_memo]
-          },
+          memo: params[:memo]
         }.merge(invoice_line_add(params[:invoice_itens]))
       },
     }
@@ -27,11 +25,11 @@ class InvoiceAddWorker < QBWC::Worker
           full_name: item[:full_name]
         },
         quantity: item[:quantity],
-        description: item[:description],
-        price_each: item[:price_each],
+        desc: item[:desc],
         amount: item[:amount],
       }
     end
+    itens
   end
 
   def handle_response(r, session, job, request, data)
