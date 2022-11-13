@@ -1,5 +1,5 @@
 require 'qbwc'
-module CostumerWorkers
+module CustomerWorkers
   class ListCustomerWorker < QBWC::Worker
 
     def requests(job, session, data)
