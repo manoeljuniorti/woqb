@@ -12,24 +12,23 @@ module InvoiceWorkers
             template_ref:{
               full_name: params[:template_name]
             },
-            memo: params[:memo]
-          }.merge(invoice_line_add(params[:invoice_itens]))
+            memo: params[:memo],
+            invoice_line_add: invoice_line_add(params[:invoice_itens])
+          },
         },
       }
     end
 
-    def invoice_line_add(invoice_itens)
+    def self.invoice_line_add(invoice_itens)
       itens = []
       invoice_itens.each do |item|
         itens << {
-          invoice_line_add:{
-          item_ref:{
-            full_name: item[:full_name]
-          },
-          quantity: item[:quantity],
-          desc: item[:desc],
-          amount: item[:amount],
-        }
+        item_ref:{
+          full_name: item[:full_name]
+        },
+        quantity: item[:quantity],
+        desc: item[:desc],
+        amount: item[:amount],
       }
       end
       itens
