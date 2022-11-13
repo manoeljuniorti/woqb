@@ -3,18 +3,44 @@ class InvoiceAddWorker < QBWC::Worker
 
   def self.requests(params)
     {
-
+      invoice_add_rq:{
+        invoice_add:{
+          customer_ref:{
+            full_name: params[:customer_name]
+          },
+          template_ref:{
+            full_name: params[:template_name]
+          },
+          customer_memo:{
+            value: params[:customer_memo]
+          },
+        }.merge(invoice_line_add(params[:invoice_itens]))
+      },
     }
   end
 
-  def handle_response(r, session, job, request, data)
-    # handle_response will get customers in groups of 100. When this is 0, we're done.
-    complete = r['xml_attributes']['iteratorRemainingCount'] == '0'
-
-    r['customer_ret'].each do |qb_cus|
-      qb_id = qb_cus['list_id']
-      qb_name = qb_cus['name']
-      puts "#{qb_id} #{qb_name}"
+  def invoice_line_add(invoice_itens)
+    itens = []
+    invoice_itens.each do |item|
+      itens << invoice_line_add:{
+        item_ref:{
+          full_name: item[:full_name]
+        },
+        quantity: item[:quantity],
+        description: item[:description],
+        price_each: item[:price_each],
+        amount: item[:amount],
+      }
     end
+  end
+
+  def handle_response(r, session, job, request, data)
+    {
+      response: r,
+      session: session,
+      job: job,
+      request: request,
+      data: data,
+    }
   end
 end
