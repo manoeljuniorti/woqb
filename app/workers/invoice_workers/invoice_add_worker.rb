@@ -7,7 +7,7 @@ module InvoiceWorkers
         invoice_add_rq:{
           invoice_add:{
             customer_ref:{
-              full_name: params[:customer_name]
+              list_id: params[:customer_id]
             },
             template_ref:{
               full_name: params[:template_name]
