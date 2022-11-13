@@ -30,6 +30,10 @@ class WofficeqbController < ApplicationController
     QBWC.add_job('Invoice Gabriel', true, '', InvoiceAddWorker, data)
   end
 
+  def find_invoice
+    render json: 
+  end
+
   private
   def client_app_params
     params.permit(:name, :description, :public_key, :secret_key, :active)
@@ -41,5 +45,9 @@ class WofficeqbController < ApplicationController
 
   def customer_params
     params.permit(:name, :active, :company_name, :salutation, :first_name, :last_name, :addr1, :city, :state, :postal_code, :phone, :alt_phone, :email, :full_name, :account_number, :credit_limit)
+  end
+
+  def invoice_params
+    params.permit()
   end
 end

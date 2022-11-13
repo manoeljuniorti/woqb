@@ -3,26 +3,7 @@ class InvoiceAddWorker < QBWC::Worker
 
   def self.requests(params)
     {
-      customer_add_rq: {
-        customer_add: {
-          name: params[:name],
-          active: params[:active],
-          company_name: params[:company_name],
-          salutation: params[:salutation],
-          first_name: params[:first_name],
-          last_name: params[:last_name],
-          addr1: params[:addr1],
-          city: params[:city],
-          state: params[:state],
-          postal_code: params[:postal_code],
-          phone: params[:phone],
-          alt_phone: params[:alt_phone],
-          email: params[:email],
-          full_name: params[:full_name],
-          account_number: params[:account_number],
-          credit_limit: params[:credit_limit],
-        }
-      }
+
     }
   end
 
